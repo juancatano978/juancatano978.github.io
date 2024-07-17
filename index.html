@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Pasadías - Club Día de Sol</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -35,7 +36,7 @@
         img {
             display: block;
             margin: auto;
-            max-width: 35%; /* Cambiar el tamaño máximo de la imagen */
+            max-width: 35%;
             height: auto;
             margin-top: 20px;
         }
@@ -104,6 +105,7 @@
             }
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
     <script>
         // Función para calcular el total a pagar
         function calculateTotal() {
@@ -203,20 +205,26 @@
             document.getElementById('total-amount').textContent = 'Total a Pagar: $0.00';
         }
 
-        // Verificar sesión activa al cargar la página
+        // Inicializar intl-tel-input
         document.addEventListener('DOMContentLoaded', () => {
-            // Opcional: Verificar si hay una sesión activa guardada en localStorage o sessionStorage
-            // Ejemplo: if (localStorage.getItem('loggedIn') === 'true') { showRegistrationForm(); }
+            const phoneInputField = document.querySelector("#phone");
+            const phoneInput = window.intlTelInput(phoneInputField, {
+                initialCountry: "auto",
+                geoIpLookup: function(success, failure) {
+                    fetch('https://ipinfo.io?token=YOUR_TOKEN_HERE')
+                        .then(response => response.json())
+                        .then(data => success(data.country))
+                        .catch(() => success('us'));
+                },
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+            });
         });
     </script>
 </head>
 <body>
     <div class="container">
         <h1>Registro de Pasadías</h1>
-
         <img src="https://antioquiatropicalclub.com/wp-content/uploads/2022/01/logo-nuevo-atc-1.png" alt="Antioquia Tropical Club" />
-       
-       
 
         <!-- Formulario de Login -->
         <div id="login-form">
@@ -231,63 +239,56 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;" onsubmit="resetForm()">
-            <form action="https://script.google.com/macros/s/AKfycbxUZSb4ZFr_zyfmsCCKkXaovuAQry-lTGDgFASwTtvZCdJQ-O5Y9vegry9ZLEwez8SLcg/exec" method="POST" enctype="multipart/form-data" target="_blank" onsubmit="resetForm()">
-                <label for="name">Nombre del Visitante</label>
+            <form action="https://script.google.com/macros/s/AKfycbys6qSxeR1bgX-AUkcX1Glri_zH2Xs4TV8UU6Yn886a2GZq9i5p2wIik1EVKlRqRPkLiw/exec" method="post" id="registration">
+                <label for="name">Nombre Completo</label>
                 <input type="text" id="name" name="name" required>
 
                 <label for="email">Correo Electrónico</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="cedula">Cédula</label>
-                <input type="text" id="cedula" name="cedula" required>
-
                 <label for="phone">Número de Celular</label>
                 <input type="tel" id="phone" name="phone" required>
 
-                <label for="plan">Plan por el Cual Nos Visita</label>
-                <select id="plan" name="plan" onchange="toggleCustomPrice(); calculateTotal()" required>
-                    <option value="">Seleccione un Plan</option>
-                    <option value="plan-semana">Plan Semana</option>
-                    <option value="plan-fin-semana">Plan Fin de Semana</option>
-                    <option value="membresia">Membresía</option>
+                <label for="plan">Seleccionar Plan</label>
+                <select id="plan" name="plan" onchange="toggleCustomPrice()" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="plan-semana">Plan entre Semana (70,000 COP Adulto / 55,000 COP Niño)</option>
+                    <option value="plan-fin-semana">Plan Fin de Semana (90,000 COP Adulto / 65,000 COP Niño)</option>
+                    <option value="membresia">Membresía (40,000 COP)</option>
                     <option value="otro">Otro</option>
                 </select>
 
-                <label for="custom-price">Precio por Persona (en caso de seleccionar "Otro")</label>
-                <input type="number" id="custom-price" name="customPrice" min="0" step="0.01" onchange="calculateTotal()" disabled>
+                <label for="custom-price">Precio Personalizado</label>
+                <input type="number" id="custom-price" name="custom-price" disabled oninput="calculateTotal()">
 
-                <label for="num-adults">Cantidad de Adultos</label>
-                <input type="number" id="num-adults" name="numAdults" min="0" onchange="calculateTotal()">
+                <label for="num-adults">Número de Adultos</label>
+                <input type="number" id="num-adults" name="num-adults" value="0" oninput="calculateTotal()" required>
 
-                <label for="num-children">Cantidad de Menores</label>
-                <input type="number" id="num-children" name="numChildren" min="0" onchange="calculateTotal()">
+                <label for="num-children">Número de Niños</label>
+                <input type="number" id="num-children" name="num-children" value="0" oninput="calculateTotal()" required>
 
                 <label for="payment-method">Método de Pago</label>
-                <select id="payment-method" name="paymentMethod" onchange="togglePaymentFields()" required>
-                    <option value="">Seleccione un Método de Pago</option>
-                    <option value="banco">Banco (Subir Archivo)</option>
-                    <option value="efectivo">Efectivo (Ingresar Monto)</option>
+                <select id="payment-method" name="payment-method" onchange="togglePaymentFields()" required>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="banco">Consignación Bancaria</option>
                 </select>
 
-                <label for="payment-proof">Subir Foto del Pago (Banco)</label>
-                <input type="file" id="payment-proof" name="paymentProof" accept="image/*" disabled>
+                <label for="payment-proof">Comprobante de Pago</label>
+                <input type="file" id="payment-proof" name="payment-proof" accept="image/*" disabled>
 
-                <label for="amount-paid-bank">Monto Pagado por Banco</label>
-                <input type="number" id="amount-paid-bank" name="amountPaidBank" min="0" step="0.01" onchange="calculateTotal()">
+                <label for="amount-paid-bank">Cantidad Pagada (Banco)</label>
+                <input type="number" id="amount-paid-bank" name="amount-paid-bank" value="0" oninput="calculateTotal()" required>
 
-                <label for="amount-paid-cash">Monto Pagado en Efectivo</label>
-                <input type="number" id="amount-paid-cash" name="amountPaidCash" min="0" step="0.01" onchange="calculateTotal()">
+                <label for="amount-paid-cash">Cantidad Pagada (Efectivo)</label>
+                <input type="number" id="amount-paid-cash" name="amount-paid-cash" value="0" oninput="calculateTotal()" required>
 
-                <label for="comments">Comentarios o Notas Adicionales</label>
-                <textarea id="comments" name="comments" rows="4"></textarea>
-
-                <div class="total" id="total-amount">Total a Pagar: $<span>0.00</span></div>
-
-                <button type="submit" id="submit-button" disabled>Registrar Visitante</button>
+                <div class="total" id="total-amount">Total a Pagar: $0.00</div>
                 
+                <button type="submit" id="submit-button" disabled>Enviar</button>
             </form>
-            <script type="text/javascript" src="https://api.clientify.net/web-marketing/webforms/external/script/197173.js"></script>
         </div>
     </div>
+    <script src="https://api.clientify.net/web-marketing/superforms/script/196881.js" async></script>
 </body>
 </html>
+
