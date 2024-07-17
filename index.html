@@ -239,7 +239,7 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;" onsubmit="resetForm()">
-            <form action="https://script.google.com/macros/s/AKfycbys6qSxeR1bgX-AUkcX1Glri_zH2Xs4TV8UU6Yn886a2GZq9i5p2wIik1EVKlRqRPkLiw/exec" method="post" id="registration">
+            <form action="https://script.google.com/macros/s/AKfycbzOvuUhXBEk1M_vnOMQcM_KiwGl2Pz5GKsGGy4hZeiQq9FWKlQJQ4xWKnzutySwVlNXXA/exec" method="post" id="registration">
                 <label for="name">Nombre Completo</label>
                 <input type="text" id="name" name="name" required>
 
@@ -259,28 +259,31 @@
                 </select>
 
                 <label for="custom-price">Precio Personalizado</label>
-                <input type="number" id="custom-price" name="custom-price" disabled oninput="calculateTotal()">
+                <input type="number" id="custom-price" name="customPrice" disabled oninput="calculateTotal()">
 
                 <label for="num-adults">Número de Adultos</label>
-                <input type="number" id="num-adults" name="num-adults" value="0" oninput="calculateTotal()" required>
+                <input type="number" id="num-adults" name="numAdults" value="0" oninput="calculateTotal()" required>
 
                 <label for="num-children">Número de Niños</label>
-                <input type="number" id="num-children" name="num-children" value="0" oninput="calculateTotal()" required>
+                <input type="number" id="num-children" name="numChildren" value="0" oninput="calculateTotal()" required>
 
                 <label for="payment-method">Método de Pago</label>
-                <select id="payment-method" name="payment-method" onchange="togglePaymentFields()" required>
+                <select id="payment-method" name="paymentMethod" onchange="togglePaymentFields()" required>
                     <option value="efectivo">Efectivo</option>
                     <option value="banco">Consignación Bancaria</option>
                 </select>
 
                 <label for="payment-proof">Comprobante de Pago</label>
-                <input type="file" id="payment-proof" name="payment-proof" accept="image/*" disabled>
+                <input type="file" id="paymentProof" name="paymentProof" accept="image/*" disabled>
 
                 <label for="amount-paid-bank">Cantidad Pagada (Banco)</label>
-                <input type="number" id="amount-paid-bank" name="amount-paid-bank" value="0" oninput="calculateTotal()" required>
+                <input type="number" id="amount-paid-bank" name="amountPaidBank" value="0" oninput="calculateTotal()" required>
 
                 <label for="amount-paid-cash">Cantidad Pagada (Efectivo)</label>
-                <input type="number" id="amount-paid-cash" name="amount-paid-cash" value="0" oninput="calculateTotal()" required>
+                <input type="number" id="amount-paid-cash" name="amountPaidCash" value="0" oninput="calculateTotal()" required>
+
+                <label for="comments">Comentarios o Notas Adicionales</label>
+                <textarea id="comments" name="comments" rows="4"></textarea>
 
                 <div class="total" id="total-amount">Total a Pagar: $0.00</div>
                 
