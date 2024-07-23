@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Pasadías</title>
+    <link rel="icon" href="logo-nuevo-atc-1.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -24,7 +25,9 @@
             width: 100%;
             max-width: 600px;
             box-sizing: border-box;
+            
         }
+
         h1 {
             text-align: center;
             color: #333;
@@ -95,6 +98,18 @@
         button:hover {
             background-color: #ff6900;
         }
+
+        .reset-button {
+            background-color: #ccc;
+            color: #333;
+            width: auto;
+            padding: 10px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .reset-button:hover {
+            background-color: #bbb;
+        }
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -111,22 +126,7 @@
 /*inicio prueba*/
 
 
-document.getElementById('createPivotTableButton').addEventListener('click', function() {
-    fetch('/createPivotTable', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Tabla dinámica creada con éxito.');
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
+
 
 
 /*fin prueba*/
@@ -310,8 +310,9 @@ document.getElementById('createPivotTableButton').addEventListener('click', func
                 const numChildren = parseInt(document.getElementById('num-children').value) || 0;
                 const amountPaidBank = parseFloat(document.getElementById('amount-paid-bank').value) || 0;
                 const amountPaidCash = parseFloat(document.getElementById('amount-paid-cash').value) || 0;
+                const amountPaidCC = parseFloat(document.getElementById('amount-paid-cc').value) || 0;
 
-                const total = (numAdults * pricePerAdult) + (numChildren * pricePerChild) - amountPaidBank - amountPaidCash;
+                const total = (numAdults * pricePerAdult) + (numChildren * pricePerChild) - amountPaidBank - amountPaidCash-amountPaidCC;
                 document.getElementById('total-amount').textContent = 'Total a Pagar: $' + total.toFixed(2);
 
                 const submitButton = document.getElementById('submit-button');
@@ -331,23 +332,7 @@ document.getElementById('createPivotTableButton').addEventListener('click', func
             calculateTotal();
         }
 
-        document.getElementById('createPivotTableButton').addEventListener('click', function() {
-    fetch('https://script.google.com/macros/s/AKfycbzuX4VMR8CduKIN698zy4YixZ--eY6Cv70nZi3gqKJ4KoLJ53FLdtBH7dhuqrpG3d71Aw/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ action: 'createPivotTableAlt' }) // Cambia a la nueva acción
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Tabla dinámica creada con éxito.');
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
+        
 
 
         // Función para habilitar/deshabilitar campos de pago dependiendo del método seleccionado
@@ -404,7 +389,10 @@ document.getElementById('createPivotTableButton').addEventListener('click', func
         function resetForm() {
             document.getElementById('registrationForm').reset();
             document.getElementById('total-amount').innerText = '0.00';
+            
         }
+
+
 
 
         // Verificar sesión activa al cargar la página
@@ -438,10 +426,10 @@ document.getElementById('createPivotTableButton').addEventListener('click', func
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;">
-            <form  action="https://script.google.com/macros/s/AKfycbzuX4VMR8CduKIN698zy4YixZ--eY6Cv70nZi3gqKJ4KoLJ53FLdtBH7dhuqrpG3d71Aw/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
+            <form  action="https://script.google.com/macros/s/AKfycbwNAQBmWnPptZOUuGD7UkkEyRFHRYvEBzhzqKZ7NcUF4A5aUoKHORseGuV9J3uvl75KnQ/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
                 
                 <div class="button-group">
-                    <button type="button" class="reset-button" onclick="resetForm()">Borrar Formulario</button>
+                    <button type="button" class="reset-button" onclick="resetForm()">Limpiar Formulario</button>
                 </div>
 
                 <label for="name">Nombre del Visitante</label>
@@ -457,7 +445,7 @@ document.getElementById('createPivotTableButton').addEventListener('click', func
                 <input type="tel" id="phone" name="phone" value="+57" required>
 
 
-                <label for="plan">Plan por el Cual Nos Visita</label>
+                <label for="plan">Plan</label>
                 <select id="plan" name="plan" onchange="toggleCustomPrice(); calculateTotal();" required>
                     <option value="" disabled selected>Seleccione un plan</option>
                     <option value="COD-067-BELLANITA">COD 067 BELLANITA</option>
@@ -511,15 +499,17 @@ document.getElementById('createPivotTableButton').addEventListener('click', func
                     <option value="otro">Otro</option>
                 </select>
 
-                <label for="custom-price">Precio por Persona (en caso de seleccionar "Otro")</label>
+                <label for="custom-price">Precio por Persona (en caso de seleccionar "Otro" o "Disfrute")</label>
                 <input type="number" id="custom-price" name="customPrice" min="0" step="0.01" onchange="calculateTotal()" disabled>
 
-                <label for="plan-type">Tipo de Plan</label>
+
+                <label for="plan-type">Plan Semana/Fin de Semana</label>
                 <select id="plan-type" name="plan-type" onchange="calculateTotal()" required>
                     <option value="" disabled selected>Seleccione el tipo de plan</option>
                     <option value="semana">Semana</option>
                     <option value="fin-semana">Fin de Semana</option>
                 </select>
+                
 
                 <label for="num-adults">Cantidad de Adultos</label>
                 <input type="number" id="num-adults" name="numAdults" min="0" onchange="calculateTotal()">
@@ -530,18 +520,20 @@ document.getElementById('createPivotTableButton').addEventListener('click', func
                 <label for="payment-method">Método de Pago</label>
                 <select id="payment-method" name="paymentMethod" onchange="togglePaymentFields()" required>
                     <option value="">Seleccione un Método de Pago</option>
-                    <option value="banco">Banco (Subir Archivo)</option>
-                    <option value="efectivo">Efectivo (Ingresar Monto)</option>
-                </select>
+                    <option value="banco">Banco</option>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="CuentasPorCobrar">Cuentas por Cobrar</option>
 
-                <label for="payment-proof">Subir Foto del Pago (Banco)</label>
-                <input type="file" id="payment-proof" name="paymentProof" accept="image/*" disabled>
+                </select>
 
                 <label for="amount-paid-bank">Monto Pagado por Banco</label>
                 <input type="number" id="amount-paid-bank" name="amountPaidBank" min="0" step="0.01" onchange="calculateTotal()">
 
                 <label for="amount-paid-cash">Monto Pagado en Efectivo</label>
                 <input type="number" id="amount-paid-cash" name="amountPaidCash" min="0" step="0.01" onchange="calculateTotal()">
+
+                <label for="amount-paid-cc">Monto Pagado por CXC</label>
+                <input type="number" id="amount-paid-cc" name="amountPaidCC" min="0" step="0.01" onchange="calculateTotal()">
 
                 <label for="comments">Comentarios o Notas Adicionales</label>
                 <textarea id="comments" name="comments" rows="4"></textarea>
