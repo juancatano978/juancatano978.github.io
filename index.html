@@ -341,17 +341,18 @@
             const paymentProofField = document.getElementById('payment-proof');
             const amountPaidBankField = document.getElementById('amount-paid-bank');
             const amountPaidCashField = document.getElementById('amount-paid-cash');
+            const amountPaidCChField = document.getElementById('amount-paid-cc');
+
 
             if (paymentMethod === 'banco') {
-                paymentProofField.disabled = false;
                 amountPaidBankField.disabled = false;
                 amountPaidCashField.disabled = false;
-            } else {
-                paymentProofField.disabled = true;
+                amountPaidCChField.disabled=false;
+            } else if (paymentMethod==='efectivo'){
                 amountPaidBankField.disabled = true;
                 amountPaidCashField.disabled = false;
-                amountPaidBankField.value = '';
-            }
+                amountPaidCChField.disabled=false;    
+            }else if(paymentMethod==='CuentasPorCobrar')
 
             calculateTotal();
         }
@@ -372,7 +373,7 @@
             const password = document.getElementById('password').value;
 
             // Validación básica del usuario y contraseña
-            if (username === 'cajeroprincipal' && password === 'caja123'||username==="nataliav"&&password==="nata123"|| username==='mateosuarez'&&password==='mate123') {
+            if (username === 'cajero' && password === 'caja123'||username==="nataliav"&&password==="nata123"|| username==='mateosuarez'&&password==='mate123' || username==='juanca'&& password==="Juanandres202003*"|| username=== 'vtobon'&&password==='viviana123'||username==='muribe'&&password==='uribe123') {
             
             
                 localStorage.setItem('loggedInUser', username);
@@ -426,7 +427,7 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;">
-            <form  action="https://script.google.com/macros/s/AKfycbwNAQBmWnPptZOUuGD7UkkEyRFHRYvEBzhzqKZ7NcUF4A5aUoKHORseGuV9J3uvl75KnQ/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
+            <form  action="https://script.google.com/macros/s/AKfycbwsRY-x58nmjMALK-HDTE4XDmZ61KwbXPWQUevh3cceSysR9rTqQpAJbN6wYq-21XwdsQ/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
                 
                 <div class="button-group">
                     <button type="button" class="reset-button" onclick="resetForm()">Limpiar Formulario</button>

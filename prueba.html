@@ -3,96 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario con Imagen</title>
-    <link rel="icon" type="image/png" href="ruta/a/tu/favicon.png">
-    <style>
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px; /* Espacio entre la imagen y el formulario */
-        }
-
-        .form-container {
-            flex: 1; /* Toma el espacio restante */
-        }
-
-        .image-container {
-            flex: 1; /* Toma el espacio restante */
-            text-align: center;
-        }
-
-        .image-container img {
-            max-width: 100%; /* Ajusta el tamaño de la imagen */
-            height: auto;
-            border-radius: 8px; /* Opcional: bordes redondeados para la imagen */
-        }
-
-        .clear-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 5px 10px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-    </style>
+    <title>Formulario de Registro</title>
 </head>
 <body>
-    <button class="clear-button" onclick="clearForm()">Borrar Formulario</button>
-    <div class="container">
-        <div class="form-container">
-            <form id="registrationForm">
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha" name="fecha" readonly><br>
-
-                <label for="plan">Plan:</label>
-                <input type="text" id="plan" name="plan" readonly><br>
-
-                <input type="submit" value="Enviar">
-            </form>
-        </div>
-        <div class="image-container">
-            <img src="ruta/a/tu/imagen.jpg" alt="Descripción de la imagen">
-        </div>
-    </div>
+    <form id="cedulaForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" readonly><br><br>
+        <label for="cedula">Cédula:</label>
+        <input type="text" id="cedula" name="cedula" readonly><br><br>
+        <input type="submit" value="Submit">
+    </form>
 
     <script>
-        // Función para calcular el tipo de plan basado en la fecha
-        function setPlan() {
-            const fechaInput = document.getElementById('fecha');
-            const planInput = document.getElementById('plan');
-            const fecha = new Date(fechaInput.value);
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    // Aquí se puede agregar lógica para procesar los datos del lector de cédulas
+                    // Por ejemplo, podrías tener una función que se llame cuando el lector de cédulas
+                    // haya terminado de escanear la cédula.
+                    processCedulaData();
+                }
+            });
+        });
 
-            // Verifica si el día de la semana es sábado o domingo
-            const diaSemana = fecha.getDay();
-            if (diaSemana === 0 || diaSemana === 6) { // 0 = Domingo, 6 = Sábado
-                planInput.value = 'Plan de Fin de Semana';
-            } else {
-                planInput.value = 'Plan de Semana';
-            }
-        }
+        function processCedulaData() {
+            // Simulación de lectura de datos
+            // Aquí deberías extraer los datos reales del lector de cédulas
+            let cedulaData = "Nombre:Juan Perez|Cédula:1234567890"; // Ejemplo de datos del lector
 
-        // Inicializar el formulario con la fecha actual y tipo de plan
-        window.onload = function() {
-            const fechaInput = document.getElementById('fecha');
-            const hoy = new Date().toISOString().split('T')[0];
-            fechaInput.value = hoy;
-            setPlan();
-        };
+            // Parsear los datos
+            let dataParts = cedulaData.split('|');
+            let nombre = dataParts[0].split(':')[1];
+            let cedula = dataParts[1].split(':')[1];
 
-        function clearForm() {
-            document.getElementById('registrationForm').reset();
-            setPlan(); // Vuelve a calcular el tipo de plan si es necesario
+            // Rellenar los campos del formulario
+            document.getElementById('nombre').value = nombre;
+            document.getElementById('cedula').value = cedula;
         }
     </script>
 </body>
