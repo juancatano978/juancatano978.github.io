@@ -373,7 +373,7 @@
             const password = document.getElementById('password').value;
 
             // Validación básica del usuario y contraseña
-            if (username === 'cajero' && password === 'caja123'||username==="nataliav"&&password==="nata123"|| username==='mateosuarez'&&password==='mate123' || username==='juanca'&& password==="Juanandres202003*"|| username=== 'vtobon'&&password==='viviana123'||username==='muribe'&&password==='uribe123') {
+            if (username === 'danielb' && password === 'christian5064'||username==="nataliav"&&password==="andrea4970"|| username==='mateosuarez'&&password==='suarez1300' || username==='juanca'&& password==="Juanandres202003*"|| username=== 'vtobon'&&password==='viviana3355'||username==='muribe'&&password==='uribe123'|| username==='vzuluaga'&& password==='123') {
             
             
                 localStorage.setItem('loggedInUser', username);
@@ -427,11 +427,14 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;">
-            <form  action="https://script.google.com/macros/s/AKfycbwsRY-x58nmjMALK-HDTE4XDmZ61KwbXPWQUevh3cceSysR9rTqQpAJbN6wYq-21XwdsQ/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
+            <form  action="https://script.google.com/macros/s/AKfycbzdKxt1SDSqsjIB8pP_kka7dipQrahYLyQ1yKRULlz3XETqrsxgG1uRDfuv-Hl4ZaTpUQ/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
                 
                 <div class="button-group">
                     <button type="button" class="reset-button" onclick="resetForm()">Limpiar Formulario</button>
                 </div>
+
+                <label for="cedula">Cédula</label>
+                <input type="text" id="cedula" name="cedula" required>
 
                 <label for="name">Nombre del Visitante</label>
                 <input type="text" id="name" name="name" required>
@@ -439,8 +442,6 @@
                 <label for="email">Correo Electrónico</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="cedula">Cédula</label>
-                <input type="text" id="cedula" name="cedula" required>
 
                 <label for="phone">Número de Teléfono</label>
                 <input type="tel" id="phone" name="phone" value="+57" required>
