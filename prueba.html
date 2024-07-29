@@ -7,39 +7,47 @@
 </head>
 <body>
     <form id="cedulaForm">
-        <label for="nombre">Nombre:</label>
+        <label for="nombre">Nombre Completo:</label>
         <input type="text" id="nombre" name="nombre" readonly><br><br>
-        <label for="cedula">Cédula:</label>
+        <label for="cedula">Número de Cédula:</label>
         <input type="text" id="cedula" name="cedula" readonly><br><br>
         <input type="submit" value="Submit">
     </form>
 
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.addEventListener('keydown', (e) => {
+        let buffer = "";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('keypress', (e) => {
+                buffer += e.key;
+                
+                // Suponiendo que el lector de cédulas envía un carácter de terminación como '\n' (Enter)
                 if (e.key === 'Enter') {
-                    // Aquí se puede agregar lógica para procesar los datos del lector de cédulas
-                    // Por ejemplo, podrías tener una función que se llame cuando el lector de cédulas
-                    // haya terminado de escanear la cédula.
-                    processCedulaData();
+                    processCedulaData(buffer);
+                    buffer = ""; // Limpiar el buffer después del procesamiento
                 }
             });
         });
 
-        function processCedulaData() {
-            // Simulación de lectura de datos
-            // Aquí deberías extraer los datos reales del lector de cédulas
-            let cedulaData = "Nombre:Juan Perez|Cédula:1234567890"; // Ejemplo de datos del lector
-
-            // Parsear los datos
-            let dataParts = cedulaData.split('|');
-            let nombre = dataParts[0].split(':')[1];
-            let cedula = dataParts[1].split(':')[1];
-
-            // Rellenar los campos del formulario
-            document.getElementById('nombre').value = nombre;
-            document.getElementById('cedula').value = cedula;
+        function processCedulaData(data) {
+            // Simulación de datos leídos por el lector
+            // Reemplaza esto con la forma en que el lector proporciona los datos
+            // Por ejemplo: data = "Juan Perez|1234567890"
+            
+            // Aquí vamos a dividir los datos por un separador conocido
+            let partes = data.split('|');
+            if (partes.length >= 2) {
+                let nombreCompleto = partes[0].trim();
+                let numeroCedula = partes[1].trim();
+                
+                // Asignar los datos a los campos del formulario
+                document.getElementById('nombre').value = nombreCompleto;
+                document.getElementById('cedula').value = numeroCedula;
+            } else {
+                console.error("Formato de datos incorrecto");
+            }
         }
     </script>
 </body>
 </html>
+
