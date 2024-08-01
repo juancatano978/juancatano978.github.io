@@ -79,6 +79,7 @@
             text-align: center;
             font-weight: 500;
         }
+        
         .total span {
             font-weight: bold;
             color: #ff6900;
@@ -110,6 +111,16 @@
         .reset-button:hover {
             background-color: #bbb;
         }
+            
+        .nh{
+            background-color: #ffd8af;
+        }
+
+        .vh{
+            background-color: #ffd8af;
+        }
+        
+        
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -309,11 +320,13 @@
 
                 const numAdults = parseInt(document.getElementById('num-adults').value) || 0;
                 const numChildren = parseInt(document.getElementById('num-children').value) || 0;
+                const numHabitaciones = parseInt(document.getElementById('numHabitaciones').value) || 0;
+                const valorHabitacion = parseInt(document.getElementById('valorHabitacion').value) || 0;
                 const amountPaidBank = parseFloat(document.getElementById('amount-paid-bank').value) || 0;
                 const amountPaidCash = parseFloat(document.getElementById('amount-paid-cash').value) || 0;
                 const amountPaidCC = parseFloat(document.getElementById('amount-paid-cc').value) || 0;
 
-                const total = (numAdults * pricePerAdult) + (numChildren * pricePerChild) - amountPaidBank - amountPaidCash-amountPaidCC;
+                const total = (numAdults * pricePerAdult) + (numChildren * pricePerChild)+(numHabitaciones*valorHabitacion) - amountPaidBank - amountPaidCash-amountPaidCC;
                 document.getElementById('total-amount').textContent = 'Total a Pagar: $' + total.toFixed(2);
 
                 const submitButton = document.getElementById('submit-button');
@@ -519,6 +532,12 @@
 
                 <label for="num-children">Cantidad de Menores</label>
                 <input type="number" id="num-children" name="numChildren" min="0" onchange="calculateTotal()">
+
+                <label for="numHabitaciones">Cantidad de Habitaciones:</label>
+                <input type="number" id="numHabitaciones" class="nh" name="numHabitaciones" value="0" onchange="calculateTotal()" >
+
+                <label for="valorHabitacion">Valor de la Habitación:</label>
+                <input type="number" id="valorHabitacion" class="vh" name="valorHabitacion" value="0" onchange="calculateTotal()">
 
                 <label for="payment-method">Método de Pago</label>
                 <select id="payment-method" name="paymentMethod" onchange="togglePaymentFields()" required>
