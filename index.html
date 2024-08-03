@@ -320,8 +320,7 @@
 
                 const numAdults = parseInt(document.getElementById('num-adults').value) || 0;
                 const numChildren = parseInt(document.getElementById('num-children').value) || 0;
-                const numHabitaciones = parseInt(document.getElementById('numHabitaciones').value) || 0;
-                const valorHabitacion = parseInt(document.getElementById('valorHabitacion').value) || 0;
+                const valorHabitacion = parseInt(document.getElementById('valorConsumos').value) || 0;
                 const amountPaidBank = parseFloat(document.getElementById('amount-paid-bank').value) || 0;
                 const amountPaidCash = parseFloat(document.getElementById('amount-paid-cash').value) || 0;
                 const amountPaidCC = parseFloat(document.getElementById('amount-paid-cc').value) || 0;
@@ -441,7 +440,7 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;">
-            <form  action="https://script.google.com/macros/s/AKfycbzdKxt1SDSqsjIB8pP_kka7dipQrahYLyQ1yKRULlz3XETqrsxgG1uRDfuv-Hl4ZaTpUQ/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
+            <form  action="https://script.google.com/macros/s/AKfycbwfTJE3whLFNZKOzT2IdIUATmrJNJ9AVG7p2PkfRy4x3uvNXR7desPMzwLmxvbcJ0YRWw/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
                 
                 <div class="button-group">
                     <button type="button" class="reset-button" onclick="resetForm()">Limpiar Formulario</button>
@@ -533,11 +532,16 @@
                 <label for="num-children">Cantidad de Menores</label>
                 <input type="number" id="num-children" name="numChildren" min="0" onchange="calculateTotal()">
 
-                <label for="numHabitaciones">Cantidad de Habitaciones:</label>
-                <input type="number" id="numHabitaciones" class="nh" name="numHabitaciones" value="0" onchange="calculateTotal()" >
+                <label for="otros-consumos">Otros Consumos</label>
+                <select id="otros-consumos" name="otrosConsumos">
+                    <option value="" disabled selected>Seleccione el tipo de consumo</option>
+                    <option value="habitacion">Habitación</option>
+                    <option value="mascotas">Mascotas</option>
+                    <option value="otrosconsumos">Otros</option>    
+                </select>
 
-                <label for="valorHabitacion">Valor de la Habitación:</label>
-                <input type="number" id="valorHabitacion" class="vh" name="valorHabitacion" value="0" onchange="calculateTotal()">
+                <label for="valorConsumo">Valor:</label>
+                <input type="number" id="valorConsumo" class="vh" name="valorConsumo" value="0" onchange="calculateTotal()">
 
                 <label for="payment-method">Método de Pago</label>
                 <select id="payment-method" name="paymentMethod" onchange="togglePaymentFields()" required>
