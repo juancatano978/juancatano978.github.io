@@ -391,7 +391,7 @@
             const password = document.getElementById('password').value;
 
             // Validación básica del usuario y contraseña
-            if (username === 'danielb' && password === 'christian5064'||username==="nataliav"&&password==="andrea4970"|| username==='mateosuarez'&&password==='suarez1300' || username==='juanca'&& password==="Juanandres202003*"|| username=== 'vtobon'&&password==='viviana3355'||username==='muribe'&&password==='uribe123'|| username==='vzuluaga'&& password==='123') {
+            if (username === 'danielb' && password === 'christian5064'||username==="nataliav"&&password==="andrea4970"|| username==='mateosuarez'&&password==='suarez1300' || username==='juanca'&& password===""|| username=== 'vtobon'&&password==='viviana3355'||username==='muribe'&&password==='uribe123'|| username==='vzuluaga'&& password==='123') {
             
             
                 localStorage.setItem('loggedInUser', username);
@@ -533,10 +533,10 @@
                 
 
                 <label for="num-adults">Cantidad de Adultos</label>
-                <input type="number" id="num-adults" name="numAdults" min="0" onchange="calculateTotal()">
+                <input type="number" id="num-adults" name="numAdults"  value="0" min="0" onchange="calculateTotal()">
 
                 <label for="num-children">Cantidad de Menores</label>
-                <input type="number" id="num-children" name="numChildren" min="0" onchange="calculateTotal()">
+                <input type="number" id="num-children" name="numChildren" value="0" min="0" onchange="calculateTotal()">
 
                 <label for="OtrosConsumos">Otros Consumos</label>
                 <input type="text" id="otrosConsumos" name="otrosConsumos">
