@@ -217,11 +217,15 @@
             case 'ponal':
             case 'FONDO-DE-EMPLEADOS-LAS-AMERICAS':
             case 'RUBEN-ALBERTO-ORREGO-GIRALDO':
+                case 'CARTA BONO':
                 pricePerAdult = 0;
                 pricePerChild = 0;
                 break;
 
             case 'otro':
+            case 'DISFRUTE':
+            case 'PASAPORTE':
+
                 const customPriceSemana = parseFloat(document.getElementById('custom-price').value) || 0;
                 pricePerAdult = customPriceSemana;
                 pricePerChild = customPriceSemana;
@@ -300,12 +304,14 @@
             case 'FONDO-DE-EMPLEADOS-LAS-AMERICAS':
             case 'RUBEN-ALBERTO-ORREGO-GIRALDO':
             case 'LAS AMERICAS':
+                case 'CARTA BONO':
                 pricePerAdult = 0;
                 pricePerChild = 0;
                 break;
 
             case 'otro':
             case 'DISFRUTE':
+            case 'PASAPORTE':
                 
                 const customPriceFinSemana = parseFloat(document.getElementById('custom-price').value) || 0;
                 pricePerAdult = customPriceFinSemana;
@@ -343,12 +349,19 @@
 
         // Función para habilitar/deshabilitar el campo de precio personalizado
         function toggleCustomPrice() {
-            const plan = document.getElementById('plan').value;
-            const customPriceField = document.getElementById('custom-price');
-            customPriceField.disabled = plan !== 'otro' && plan !== 'DISFRUTE';
-            customPriceField.value = '';
-            calculateTotal();
-        }
+    const plan = document.getElementById('plan').value;
+    const customPriceField = document.getElementById('custom-price');
+
+    // Habilitar o deshabilitar el campo de precio personalizado dependiendo del plan seleccionado
+    if (plan === 'otro' || plan === 'DISFRUTE' || plan === 'PASAPORTE') {
+        customPriceField.disabled = false; // Habilitar el campo
+    } else {
+        customPriceField.disabled = true; // Deshabilitar el campo
+    }
+
+    customPriceField.value = ''; // Limpiar el valor actual
+    calculateTotal(); // Recalcular el total
+}
 
         
 
@@ -445,9 +458,9 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;">
-            <form  action="https://script.google.com/macros/s/AKfycbxcUWHuC-f1laFm0nbdxgUCMi9OadSQnSRqEwjEg9nA4QwnWu0Ivbv1xxS78xQVyR2kQA/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
+            <form  action="https://script.google.com/macros/s/AKfycbykO4JG3kpw38IFj0zCYRvgg7TWZovBoYW4RcjqH8VjMpip5FWmq_v-ENTxdYbdZOGJpA/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
                 
-                <div class="button-group">
+                <div class="button-group">  
                     <button type="button" class="reset-button" onclick="resetForm()">Limpiar Formulario</button>
                 </div>
 
@@ -490,6 +503,8 @@
                     <option value="DISFRUTE">DISFRUTE</option>
                     <option value="INVITADO">INVITADO</option>
                     <option value="ASOCIADO">ASOCIADO</option>
+                    <option value="PASAPORTE">PASAPORTE</option>
+                    <option value="CARTA BONO">CARTA BONO</option>
                     <option value="TU CIUDAD EN RED">TU CIUDAD EN RED</option>
                     <option value="ATC MEMBRESIA">ATC MEMBRESIA</option>
                     <option value="COD-ASOC-205-6">COD ASOC 205-6</option>
