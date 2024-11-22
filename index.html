@@ -129,6 +129,29 @@
                 font-size: 20px;
             }
         }
+
+    .top-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .top-buttons button {
+        padding: 5px 10px;
+        font-size: 12px;
+        background-color: #007bff;
+        color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .top-buttons button:hover {
+        background-color: #ff8d2d
+    }
+
+
     </style>
     <script>
 
@@ -151,6 +174,7 @@
 
         let pricePerAdult = 0;
         let pricePerChild = 0;
+
 
         if (planType === 'semana') {
         switch (plan) {
@@ -217,7 +241,8 @@
             case 'ponal':
             case 'FONDO-DE-EMPLEADOS-LAS-AMERICAS':
             case 'RUBEN-ALBERTO-ORREGO-GIRALDO':
-                case 'CARTA BONO':
+            case 'JUAN DE JESUS LOAIZA PALACIO':
+            case 'CARTA BONO':
                 pricePerAdult = 0;
                 pricePerChild = 0;
                 break;
@@ -307,7 +332,8 @@
             case 'RUBEN-ALBERTO-ORREGO-GIRALDO':
             case 'ANGELA PATRICIA GARCIA':
             case 'LAS AMERICAS':
-                case 'CARTA BONO':
+            case 'JUAN DE JESUS LOAIZA PALACIO':
+            case 'CARTA BONO':
                 pricePerAdult = 0;
                 pricePerChild = 0;
                 break;
@@ -327,6 +353,7 @@
                 break;
             }
         }
+    
 
                     
                 
@@ -443,6 +470,7 @@
 <body>
     <div class="container">
         <h1>Registro de Pasadías</h1>
+        
 
         <img src="https://antioquiatropicalclub.com/wp-content/uploads/2022/01/logo-nuevo-atc-1.png" alt="Antioquia Tropical Club" />
        
@@ -461,9 +489,17 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;">
-            <form  action="https://script.google.com/macros/s/AKfycbw-WLK-qWJawZ0o2oEmMmzOE8krmFBwXkh1CVyE7l309oYQvJ8F6UpJQc-w1kka2xbG_w/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
+            <form  action="https://script.google.com/macros/s/AKfycbwrRkyZ2tFe50_zUp68szPqf9vPN8b9sSxm2DA7Tidhbq5U2-RPxScqbvRuSwqBOUHl3g/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
                 
-                <div class="button-group">  
+                <label for="txtexpl">Botones de acceso rápido</label>
+                <div class="top-buttons">
+                    <button onclick="window.open('https://drive.google.com/drive/folders/17jgY3lT29tpYFU0qoyuBUH3RUbrcQCb1?usp=drive_link', '_blank')" type="button">USUARIO ATC</button>
+                    <button onclick="window.open('https://tuciudadenred.com/validar-clientes', '_blank')" type="button">USUARIO TCR</button>
+                    <button onclick="window.open('https://members.tuciudadenred.app/', '_blank')" type="button">USUARIO MEMBERS</button>
+                    <button onclick="window.open('https://docs.google.com/spreadsheets/d/1krnSe4cAjPbH8dyE-p8SAKAuSFari7o_gMhcOswUWkI/edit?usp=sharing', '_blank')" type="button">FINCOMERCIO</button>
+                </div>
+
+                <div class="button-group">      
                     <button type="button" class="reset-button" onclick="resetForm()">Limpiar Formulario</button>
                 </div>
 
@@ -502,6 +538,8 @@
                     <option value="COOPERATIVA-DE-TRABAJO-ASOCIADO-DE-PROFESIONALES-DE-LA-SALUD-DE-DONMATIAS-PROSALCO">MEMBRESIA PROSALCO</option>
                     <option value="MUNICIPIO-DE-DONMATIAS">MEMBRESIA MUNICIPIO DE DONMATIAS</option>
                     <option value="LAS AMERICAS">MEMBRESIA LAS AMERICAS</option>
+                    <option value="RUBEN-ALBERTO-ORREGO-GIRALDO">MEMBRESÍA RUBEN ALBERTO ORREGO GIRALDO</option>
+                    <option value="JUAN DE JESUS LOAIZA PALACIO ">MEMBRESÍA JUAN DE JESUS LOAIZA PALACIO </option>
                     <option value="PLAN">PLAN</option>
                     <option value="EMPLEADO">EMPLEADO</option>
                     <option value="DISFRUTE">DISFRUTE</option>
@@ -540,6 +578,22 @@
                     <option value="PONAL">PONAL</option>
                     <option value="otro">Otro</option>
                 </select>
+
+                <label for="convenio">Convenio</label>
+                    <select id="convenio" name="convenio">
+                        <option value="NINGUNO" selected>NINGUNO</option>
+                        <option value="COMFENALCO">COMFENALCO</option>
+                        <option value="COMFAMA">COMFAMA</option>
+                        <option value="FEADE">FEADE</option>
+                        <option value="FINCOMERCIO">FINCOMERCIO</option>
+                        <option value="GTS">GTS</option>
+                        <option value="ORBISCOOP">ORBISCOOP</option>
+                        <option value="BIBLIOTECA PUBLICA PILOTO">BIBLIOTECA PUBLICA PILOTO</option>
+                        <option value="FEDEHACEB">FEDEHACEB</option>
+                        <option value="F.E. COMITE REHABILITACION DE ANTIOQUIA">F.E. COMITE REHABILITACION DE ANTIOQUIA</option>
+                        <option value="AGENCIA CINCO HORIZONTES">AGENCIA CINCO HORIZONTES</option>
+                    </select>
+
 
                 <label for="custom-price">Precio por Persona (en caso de seleccionar "Otro" o "Disfrute")</label>
                 <input type="number" id="custom-price" name="customPrice" min="0" step="0.01" onchange="calculateTotal()" disabled>
