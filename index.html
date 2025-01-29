@@ -511,6 +511,37 @@
 </script>
 
 
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const copyButton = document.getElementById("submit-button");
+    
+        if (copyButton) {
+            copyButton.addEventListener("click", copyToClipboard);
+        }
+    });
+    
+    function copyToClipboard() {
+    const cedula = document.getElementById("cedula").value || "";
+    const telefono = document.getElementById("phone").value || "";
+    const correo = document.getElementById("email").value || "";
+
+    // Crear el formato con tabulaciones
+    const textToCopy = `${cedula}${"\t".repeat(23)}${telefono}\t${correo}`;
+
+    // Crear un elemento temporal para copiar al portapapeles
+    const tempInput = document.createElement("textarea");
+    tempInput.value = textToCopy;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+
+    alert("Datos copiados al portapapeles.");
+}
+    </script>
+
 </head>
 <body>
 
@@ -540,7 +571,7 @@
 
         <!-- Formulario de Registro de Pasadías -->
         <div id="registration-form" style="display: none;">
-            <form  action="https://script.google.com/macros/s/AKfycbxIF3kiBqhVzfeXOHhecKZdGoyzW3IbMXACTTkpC_rDj03TaLbBp1Ffy1j3toxOom073Q/exec" id="registrationForm" method="POST" enctype="multipart/form-data" target="_blank">
+            <form  action="https://script.google.com/macros/s/AKfycbxIF3kiBqhVzfeXOHhecKZdGoyzW3IbMXACTTkpC_rDj03TaLbBp1Ffy1j3toxOom073Q/exec" id="registrationForm" method="POST">
                 
                 <label for="txtexpl">Botones de acceso rápido</label>
                 <div class="top-buttons">
