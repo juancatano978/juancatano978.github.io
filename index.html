@@ -482,14 +482,14 @@
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxRG6df2JbDJ2fYSjXdXbnYiYyBdjhsD8bUKGysqlogQgrNqkMPsUGay5GLJ6HkREmI/exec?cedula=" + encodeURIComponent(cedula)
+        "https://script.google.com/macros/s/AKfycbyTwF5RwAU-2retVSVVyl0a2m1j9x_Y4o44P3xsV0TagACJmyordUCXs4wy85vxtuZq/exec?cedula=" + encodeURIComponent(cedula)
       );
       const data = await response.json();
 
       if (data.error) {
         // Opcional: Limpia los campos si no se encuentra la cédula
         //document.getElementById('name').value = "";
-        //document.getElementById('email').value = "";
+        //document.getElementById('email').value = "";    
         //document.getElementById('phone').value = "";
         alert("Usuario no encontrado.");
       } else {
@@ -506,7 +506,7 @@
     } catch (error) {
       console.error("Error al obtener los datos:", error);
       alert("Ocurrió un error al buscar los datos.");
-    }
+    }   
   }
 </script>
 
