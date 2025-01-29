@@ -511,45 +511,6 @@
 </script>
 
 
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const copyButton = document.getElementById("submit-button");
-    
-        if (copyButton) {
-            copyButton.addEventListener("click", copyToClipboard);
-        }
-    });
-    
-    
-    function copyToClipboard() {
-    const cedula = document.getElementById("cedula").value || "";
-    const telefono = document.getElementById("phone").value || "";
-    const correo = document.getElementById("email").value || "";
-
-    // Crear el formato con tabulaciones
-    const textToCopy = `${cedula}${"\t".repeat(23)}${telefono}\t${correo}`;
-
-    // Copiar al portapapeles usando navigator.clipboard
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        alert("Datos copiados al portapapeles correctamente.");
-    }).catch(err => {
-        console.error("Error al copiar: ", err);
-    });
-}
-
-// Agregar el evento al botón
-document.addEventListener("DOMContentLoaded", function () {
-    const copyButton = document.getElementById("copyButton");
-    if (copyButton) {
-        copyButton.addEventListener("click", copyToClipboard);
-    }
-});
-
-
-    </script>
-
 </head>
 <body>
 
