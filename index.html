@@ -6,6 +6,44 @@
     <title>Registro de Pasadías</title>
     <link rel="icon" href="logo-nuevo-atc-1.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #f1f2f6, #dfe4ea);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -525,13 +563,13 @@
 
         <!-- Formulario de Login -->
         <div id="login-form">
-            <label for="username">Usuario</label>
+            <label for="username">👤 Usuario</label>
             <input type="text" id="username" name="username" required>
 
-            <label for="password">Contraseña</label>
+            <label for="password">🔒 Contraseña</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="button" onclick="login()">Iniciar Sesión</button>
+            <button type="button" onclick="login()">Ingresar</button>
             <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #777; border-top: 1px solid #ddd; padding-top: 10px;">
                 &copy; 2025 by Juan Andrés Cataño Suárez <br>
                 <a href="tel:+573108463165" style="color: #ff6900;">+57 310 846 3165</a>
@@ -717,5 +755,26 @@
           
           
     </div>
+
+    <script>
+  // Mostrar/Ocultar contraseña
+  document.getElementById('togglePassword').addEventListener('change', function () {
+    const input = document.getElementById('contrasena');
+    input.type = this.checked ? 'text' : 'password';
+  });
+
+  // Validación visual
+  document.getElementById('formLogin').addEventListener('submit', function(e) {
+    const usuario = document.getElementById('usuario');
+    const contrasena = document.getElementById('contrasena');
+    
+    if (!usuario.value || !contrasena.value) {
+      e.preventDefault();
+      if (!usuario.value) usuario.style.border = "2px solid red";
+      if (!contrasena.value) contrasena.style.border = "2px solid red";
+      alert("Por favor completa todos los campos");
+    }
+  });
+</script>
 </body>
 </html>
