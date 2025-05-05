@@ -170,7 +170,7 @@
         // Función para calcular el total a pagar
         function calculateTotal() {
             const plan = document.getElementById('plan').value;
-            const planType = document.getElementById('plan-type').value;
+            const planType = document.getElementById('plantype').value;
 
             // Obtener los precios según el plan seleccionado y el tipo de plan (semana o fin de semana)    
 
@@ -652,8 +652,8 @@
                 <input type="number" id="custom-price" name="customPrice" min="0" step="0.01" onchange="calculateTotal()" disabled>
 
 
-                <label for="plan-type">Plan Semana/Fin de Semana</label>
-                <select id="plan-type" name="plan-type" onchange="calculateTotal()" required>
+                <label for="plantype">Plan Semana/Fin de Semana</label>
+                <select id="plantype" name="plantype" onchange="calculateTotal()" required>
                     <option value="" disabled selected>Seleccione el tipo de plan</option>
                     <option value="semana">Semana</option>
                     <option value="fin-semana">Fin de Semana</option>
