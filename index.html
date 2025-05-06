@@ -188,7 +188,6 @@
             case 'COD-105FECERVUNION':
             case 'COD-209-210-FEDEAN':
             case 'COD-068-TAXICOL':
-            case 'FONCREA-SAS':
             case 'TECNOLOGIA-GLOBAL':
             case 'GLORIA-EUGENIA-BARRERA-VARGAS':
             case 'VETA-SEGURIDAD':
@@ -215,10 +214,9 @@
                 pricePerChild = 40000;
                 break;
 
-
+            case 'FONCREA-SAS':
             case 'LAS AMERICAS':
             case 'EMPLEADO':
-            case 'ASOCIADA':
             case 'COD-ASOC-205-6':
             case 'COD-ASOC-205-7':
             case 'COD-ASOC-113':
@@ -243,18 +241,19 @@
             case 'COD-ASOC-162':
             case 'COD-ASOC-008':
             case 'COD-ASOC-039':
-            case 'ponal':
             case 'FONDO-DE-EMPLEADOS-LAS-AMERICAS':
             case 'RUBEN-ALBERTO-ORREGO-GIRALDO':
             case 'JUAN DE JESUS LOAIZA PALACIO':
             case 'CARTA BONO':
+            case 'CONSUMO'
+            case 'ALMORZAR'
                 pricePerAdult = 0;
                 pricePerChild = 0;
                 break;
 
-            case 'otro':
             case 'DISFRUTE':
             case 'PASAPORTE':
+            case 'AGENCIA'
 
                 const customPriceSemana = parseFloat(document.getElementById('custom-price').value) || 0;
                 pricePerAdult = customPriceSemana;
@@ -278,7 +277,6 @@
             case 'COD-105FECERVUNION':
             case 'COD-209-210-FEDEAN':
             case 'COD-068-TAXICOL':
-            case 'FONCREA-SAS':
             case 'TECNOLOGIA-GLOBAL':
             case 'GLORIA-EUGENIA-BARRERA-VARGAS':
             case 'VETA-SEGURIDAD':
@@ -304,8 +302,10 @@
                 pricePerChild = 45000;
                 break;
 
-            case 'empleado':
-            case 'asociado':
+
+                
+            case 'FONCREA-SAS':
+            case 'EMPLEADO':
             case 'COD-ASOC-205-6':
             case 'COD-ASOC-205-7':
             case 'COD-ASOC-205-9':
@@ -332,7 +332,6 @@
             case 'COD-ASOC-162':
             case 'COD-ASOC-008':
             case 'COD-ASOC-039':
-            case 'PONAL':
             case 'FONDO-DE-EMPLEADOS-LAS-AMERICAS':
             case 'RUBEN-ALBERTO-ORREGO-GIRALDO':
             case 'ANGELA PATRICIA GARCIA':
@@ -343,9 +342,9 @@
                 pricePerChild = 0;
                 break;
 
-            case 'otro':
             case 'DISFRUTE':
             case 'PASAPORTE':
+            case 'AGENCIA'
                 
                 const customPriceFinSemana = parseFloat(document.getElementById('custom-price').value) || 0;
                 pricePerAdult = customPriceFinSemana;
@@ -388,7 +387,7 @@
     const customPriceField = document.getElementById('custom-price');
 
     // Habilitar o deshabilitar el campo de precio personalizado dependiendo del plan seleccionado
-    if (plan === 'otro' || plan === 'DISFRUTE' || plan === 'PASAPORTE') {
+    if (plan === 'DISFRUTE' || plan === 'PASAPORTE' || plan === 'AGENCIA') {
         customPriceField.disabled = false; // Habilitar el campo
     } else {
         customPriceField.disabled = true; // Deshabilitar el campo
@@ -498,7 +497,7 @@
         document.getElementById('name').value = data.name || "";
         document.getElementById('email').value = data.email || "";
         document.getElementById('phone').value = data.phone || "";
-        document.getElementById('Mvista').value = "Usuario recurrente";
+        document.getElementById('Mvista').value = "VISITANTE FRECUENTE";
 
         // Mostrar alerta con el tipo de visita
         if (data.tipoVisita) {
@@ -597,7 +596,8 @@
                     <option value="EMPLEADO">EMPLEADO</option>
                     <option value="DISFRUTE">DISFRUTE</option>
                     <option value="INVITADO">INVITADO</option>
-                    <option value="ASOCIADO">ASOCIADO</option>
+                    <option value="CONSUMO">CONSUMO</option>
+                    <option value="ALMORZAR">ALMORZAR</option>
                     <option value="PASAPORTE">PASAPORTE</option>
                     <option value="CARTA BONO">CARTA BONO</option>
                     <option value="TU CIUDAD EN RED">TU CIUDAD EN RED</option>
@@ -628,8 +628,6 @@
                     <option value="COD-ASOC-162">COD ASOC 162</option>
                     <option value="COD-ASOC-008">COD ASOC 008</option>
                     <option value="COD-ASOC-039">COD ASOC 039</option>
-                    <option value="PONAL">PONAL</option>
-                    <option value="otro">Otro</option>
                 </select>
 
                 <label for="convenio">Convenio</label>
@@ -639,7 +637,8 @@
                         <option value="COMFAMA">COMFAMA</option>
                         <option value="FEADE">FEADE</option>
                         <option value="FINCOMERCIO">FINCOMERCIO</option>
-                        <option value="GTS">GTS</option>
+                        <option value="AGENCIA GTS">AGENCIA GTS</option>
+                        <option value="AGENCIA NEW TRIP">AGENCIA NEW TRIP</option>
                         <option value="ORBISCOOP">ORBISCOOP</option>
                         <option value="BIBLIOTECA PUBLICA PILOTO">BIBLIOTECA PUBLICA PILOTO</option>
                         <option value="FEDEHACEB">FEDEHACEB</option>
@@ -648,7 +647,7 @@
                     </select>
 
 
-                <label for="custom-price">Precio por Persona (en caso de seleccionar "Otro" o "Disfrute")</label>
+                <label for="custom-price">Precio por Persona en caso de AGENCIA, PASAPORTE o DISFRUTE</label>
                 <input type="number" id="custom-price" name="customPrice" min="0" step="0.01" onchange="calculateTotal()" disabled>
 
 
