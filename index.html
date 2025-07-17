@@ -6,12 +6,11 @@
     <title>Registro de Pasadías</title>
     <link rel="icon" href="logo-nuevo-atc-1.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-        <!-- Select2 CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-        
-        <!-- jQuery y Select2 JS -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <!-- Tom Select CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
+
+        <!-- Tom Select JS -->
+        <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 
 
 
@@ -139,32 +138,62 @@
             }
         }
 
-    .top-buttons {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        margin-bottom: 10px;
-    }
+        .top-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
 
-    .top-buttons button {
-        padding: 5px 10px;
-        font-size: 12px;
-        background-color: #007bff;
-        color: rgb(255, 255, 255);
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+        .top-buttons button {
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #007bff;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .top-buttons button:hover {
-        background-color: #ff8d2d
-    }
-    .select2-container--default .select2-selection--single {
-      height: 38px;
-      padding: 4px 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+        .top-buttons button:hover {
+            background-color: #ff8d2d
+        }
+       /* 🔧 Select2 contenedor: sin padding para evitar empujes */
+.select2-container--default .select2-selection--single {
+  height: 40px !important;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: white;
+  position: relative;
+}
+
+/* ✅ Texto seleccionado: Alineado perfectamente a la izquierda */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #000 !important;
+  font-size: 15px;
+  padding-left: 12px !important;
+  padding-right: 30px !important;
+  line-height: 40px !important;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ✅ Flecha del select a la derecha */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 20px;
+  pointer-events: none;
+}
+.select2-selection__rendered {
+  color: #000 !important;
+}
 
 
     </style>
@@ -577,7 +606,7 @@
 
 
                 <label for="plan">Plan</label>
-                <select id="plan" name="plan" style="width: 300px;" onchange="toggleCustomPrice(); calculateTotal();" required>
+                <select id="plan" name="plan"  style="width: 100%;" onchange="toggleCustomPrice(); calculateTotal();" required>
                     <option value="" disabled selected>Seleccione un plan</option>
                     <option value="COD-067-BELLANITA">COD 067 BELLANITA</option>
                     <option value="COD-190-KANJES">COD 190 KANJES</option>
@@ -761,14 +790,26 @@
       alert("Por favor completa todos los campos");
     }
   });
-</script>
-    <script>
-  $(document).ready(function() {
-    $('#plan').select2({
-      placeholder: "Buscar una opción",
-      allowClear: true
-    });
+  </script>
+
+<script>
+  const planSelect = new TomSelect("#plan", {
+    placeholder: "Selecciona un plan",
+    allowClear: true,
+    plugins: {
+      clear_button: {}
+    },
+    onItemAdd(value, item) {
+      // Cierra el dropdown y deshabilita el input
+      this.close();
+      this.control_input.disabled = true;
+    },
+    onDropdownOpen(dropdown) {
+      // Antes de abrir, nos aseguramos de habilitar el input
+      this.control_input.disabled = false;
+    }
   });
 </script>
+    
 </body>
 </html>
