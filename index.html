@@ -159,6 +159,12 @@
     .top-buttons button:hover {
         background-color: #ff8d2d
     }
+    .select2-container--default .select2-selection--single {
+      height: 38px;
+      padding: 4px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
 
     </style>
@@ -571,7 +577,7 @@
 
 
                 <label for="plan">Plan</label>
-                <select id="plan" name="plan" onchange="toggleCustomPrice(); calculateTotal();" required>
+                <select id="plan" name="plan" style="width: 300px;" onchange="toggleCustomPrice(); calculateTotal();" required>
                     <option value="" disabled selected>Seleccione un plan</option>
                     <option value="COD-067-BELLANITA">COD 067 BELLANITA</option>
                     <option value="COD-190-KANJES">COD 190 KANJES</option>
