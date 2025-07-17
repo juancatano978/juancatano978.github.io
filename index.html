@@ -6,6 +6,13 @@
     <title>Registro de Pasadías</title>
     <link rel="icon" href="logo-nuevo-atc-1.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <!-- Select2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        
+        <!-- jQuery y Select2 JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 
     <style>
@@ -747,6 +754,14 @@
       if (!contrasena.value) contrasena.style.border = "2px solid red";
       alert("Por favor completa todos los campos");
     }
+  });
+</script>
+    <script>
+  $(document).ready(function() {
+    $('#plan').select2({
+      placeholder: "Buscar una opción",
+      allowClear: true
+    });
   });
 </script>
 </body>
