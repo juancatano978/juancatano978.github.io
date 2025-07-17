@@ -108,17 +108,6 @@
             background-color: #ff6900;
         }
 
-        .reset-button {
-            background-color: #ccc;
-            color: #333;
-            width: auto;
-            padding: 10px;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-        .reset-button:hover {
-            background-color: #bbb;
-        }
             
         .nh{
             background-color: #ffd8af;
@@ -159,42 +148,103 @@
             background-color: #ff8d2d
         }
        /* 🔧 Select2 contenedor: sin padding para evitar empujes */
-.select2-container--default .select2-selection--single {
-  height: 40px !important;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 15px;
-  box-sizing: border-box;
-  background-color: white;
-  position: relative;
-}
+        .select2-container--default .select2-selection--single {
+        height: 40px !important;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 15px;
+        box-sizing: border-box;
+        background-color: white;
+        position: relative;
+        }
 
-/* ✅ Texto seleccionado: Alineado perfectamente a la izquierda */
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-  color: #000 !important;
-  font-size: 15px;
-  padding-left: 12px !important;
-  padding-right: 30px !important;
-  line-height: 40px !important;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+        /* ✅ Texto seleccionado: Alineado perfectamente a la izquierda */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #000 !important;
+        font-size: 15px;
+        padding-left: 12px !important;
+        padding-right: 30px !important;
+        line-height: 40px !important;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        }
 
-/* ✅ Flecha del select a la derecha */
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 10px;
-  width: 20px;
-  pointer-events: none;
-}
-.select2-selection__rendered {
-  color: #000 !important;
-}
+        /* ✅ Flecha del select a la derecha */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        width: 20px;
+        pointer-events: none;
+        }
+        .select2-selection__rendered {
+        color: #000 !important;
+        }
 
+        .top-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .quick-access-img {
+            width: 80px;
+            height: 60px;
+            object-fit: contain;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 5px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .quick-access-img:hover {
+            border-color: #ff6900;
+            box-shadow: 0 4px 8px rgba(255, 105, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .reset-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            width: auto;
+        }
+
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            background: linear-gradient(135deg, #ff5252, #d63031);
+        }
+
+        .reset-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 600px) {
+            .reset-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
 
     </style>
     <script>
@@ -578,15 +628,17 @@
 
                 <label for="txtexpl">Botones de acceso rápido</label>
                 <div class="top-buttons">
-                    <button onclick="window.open('https://drive.google.com/drive/folders/17jgY3lT29tpYFU0qoyuBUH3RUbrcQCb1?usp=drive_link', '_blank')" type="button">USUARIO ATC</button>
-                    <button onclick="window.open('https://tuciudadenred.com/validar-clientes', '_blank')" type="button">USUARIO TCR</button>
-                    <button onclick="window.open('https://members.tuciudadenred.app/', '_blank')" type="button">USUARIO MEMBERS</button>
-                    <button onclick="window.open('https://docs.google.com/spreadsheets/d/1krnSe4cAjPbH8dyE-p8SAKAuSFari7o_gMhcOswUWkI/edit?usp=sharing', '_blank')" type="button">FINCOMERCIO</button>
+                    <img src="atc.png" alt="Usuario ATC" onclick="window.open('https://drive.google.com/drive/folders/17jgY3lT29tpYFU0qoyuBUH3RUbrcQCb1?usp=drive_link', '_blank')" class="quick-access-img">
+                    <img src="validar.png" alt="Usuario TCR" onclick="window.open('https://tuciudadenred.com/validar-clientes', '_blank')" class="quick-access-img">
+                    <img src="members.png" alt="Usuario Members" onclick="window.open('https://members.tuciudadenred.app/', '_blank')" class="quick-access-img">
+                    <img src="Fincomercio.png" alt="Fincomercio" onclick="window.open('https://docs.google.com/spreadsheets/d/1krnSe4cAjPbH8dyE-p8SAKAuSFari7o_gMhcOswUWkI/edit?usp=sharing', '_blank')" class="quick-access-img">
                 </div>
 
                 <div class="button-group">      
-                    <button type="button" class="reset-button" onclick="resetForm()">Limpiar Formulario</button>
-                </div>
+                    <button type="button" class="reset-button" onclick="resetForm()">
+                    <span>🗑️</span> Limpiar Formulario
+                    </button>
+                </div>  
 
                 <label for="cedula">Cédula</label>
                 <input type="text" id="cedula" name="cedula" onblur="fetchClientData()">
