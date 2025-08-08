@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba Copiar Datos - Simulación PDF417</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simulación de Lector de Cédula PDF417</h1>
+    <p>Llena los datos y luego haz clic en "Copiar datos" para simular un escaneo de cédula. Después pega en la app de escritorio en el campo de cédula.</p>
+
+    <form id="formulario">
+        <input type="text" id="cedula" placeholder="Cédula">
+        <input type="text" id="apellido1" placeholder="Primer Apellido">
+        <input type="text" id="apellido2" placeholder="Segundo Apellido">
+        <input type="text" id="nombre" placeholder="Nombre Completo">
+        <input type="date" id="fecha_nac">
+        <select id="sexo">
+            <option value="M">M</option>
+            <option value="F">F</option>
+        </select>
+        <input type="text" id="rh" placeholder="RH (Ej: O+, A-, B+)">
+        <button type="button" onclick="copiarDatos()">Copiar datos</button>
+    </form>
+
+    <script>
+        function copiarDatos() {
+            const cedula = document.getElementById("cedula").value;
+            const apellido1 = document.getElementById("apellido1").value;
+            const apellido2 = document.getElementById("apellido2").value;
+            const nombre = document.getElementById("nombre").value;
+            const fecha_nac = document.getElementById("fecha_nac").value;
+            const sexo = document.getElementById("sexo").value;
+            const rh = document.getElementById("rh").value;
+
+            // Formato como lector PDF417 (tabulaciones entre campos)
+            const texto = `${cedula}\t${apellido1}\t${apellido2}\t${nombre}\t${fecha_nac}\t${sexo}\t${rh}`;
+
+            navigator.clipboard.writeText(texto).then(() => {
+                alert("Datos copiados. Ahora pégalos en la app de escritorio en el campo de cédula.");
+            }).catch(err => {
+                console.error("Error al copiar: ", err);
+            });
+        }
+    </script>
+
+</body>
+</html>
