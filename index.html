@@ -526,7 +526,7 @@
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbw9LbsoFSBxA316qVZipNA9kZAXJUqkaj6DLBApbS5vFpOK7Lc8Xc5iOcT1wiwZJyE2/exec?cedula=" + encodeURIComponent(cedula)
+        "https://script.google.com/macros/s/AKfycbx5oqmVpR_7NqIoQDSK891vxDOq9K9M3DYDG3ul5NEIvjCWJIr2k6jnRij-iUdMUZKE/exec?cedula=" + encodeURIComponent(cedula)
       );
       const data = await response.json();
 
@@ -540,7 +540,7 @@
         document.getElementById('name').value = data.name || "";
         document.getElementById('email').value = data.email || "";
         document.getElementById('phone').value = data.phone || "";
-        document.getElementById('dire').value = data.tipoVisita || "";
+        document.getElementById('dire').value = data.dire || "";
         document.getElementById('Mvista').value = "VISITANTE FRECUENTE";
 
         // Mostrar alerta con el tipo de visita
