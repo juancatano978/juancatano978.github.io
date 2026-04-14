@@ -204,8 +204,11 @@
             }
         }
 
-        input[type="text"], input[type="email"], textarea {
-        text-transform: uppercase;
+        /* Esto aplica mayúsculas a todos los input de texto EXCEPTO al que tiene id="username" */
+        input[type="text"]:not(#username), 
+        input[type="email"], 
+        textarea {
+            text-transform: uppercase;
         }
 
     </style>
